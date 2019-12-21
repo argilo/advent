@@ -1,0 +1,44 @@
+#ip 2
+00 addi 2 16 2  jump to 17
+
+---> r3 = 974 / 10551374 (target)
+01 seti 1 0 4   reg4 = 1
+02 seti 1 5 5   reg5 = 1
+
+03 mulr 4 5 1   reg1 = reg4 * reg5
+04 eqrr 1 3 1   reg1 = (reg1 == reg3)
+05 addr 1 2 2   jump to 7 if equal
+06 addi 2 1 2   jump to 8 (if not equal)
+07 addr 4 0 0   reg0 += reg4 (if reg1 == reg3) *****
+08 addi 5 1 5   reg5++
+09 gtrr 5 3 1   reg1 = (reg5 > reg3)
+10 addr 2 1 2   jump to 12 if reg5 > reg3 (break out of loop)
+11 seti 2 6 2   jump to 3
+
+12 addi 4 1 4   reg4 += 1
+13 gtrr 4 3 1   reg1 = (reg4 > reg3)
+14 addr 1 2 2   jump to 16  if reg4 > reg3
+15 seti 1 7 2   jump to 2
+16 mulr 2 2 2   HALT (i.e. jump to 258)
+
+17 addi 3 2 3   reg3 += 2        --> 2
+18 mulr 3 3 3   reg3 *= reg3     --> 4
+19 mulr 2 3 3   reg3 *= reg2(19) --> 76
+20 muli 3 11 3  reg3 *= 11       --> 836
+21 addi 1 6 1   reg1 += 6        --> 6
+22 mulr 1 2 1   reg1 *= reg2(22) --> 132
+23 addi 1 6 1   reg1 += 6        --> 138
+24 addr 3 1 3   reg3 += reg1     --> 974
+25 addr 2 0 2   skip r1 instructions (jump to 27)
+26 seti 0 3 2   (skipped now, jump to 1)
+27 setr 2 3 1   reg1 = reg2(27)  --> 27
+28 mulr 1 2 1   reg1 *= reg2(28) --> 756
+29 addr 2 1 1   reg1 += reg2(29) --> 785
+30 mulr 2 1 1   reg1 *= reg2(30) --> 23550
+31 muli 1 14 1  reg1 *= 14       --> 329700
+32 mulr 1 2 1   reg1 *= reg2(32) --> 10550400
+33 addr 3 1 3   reg3 += reg1     --> 10551374
+34 seti 0 9 0   reg0 = 0         --> 0
+35 seti 0 5 2   jump to 1
+
+computes sum of divisors of reg3 = 10551374!!
