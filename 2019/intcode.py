@@ -79,9 +79,14 @@ def execute(prog):
         elif opcode == MULTIPLY:
             prog[addrs[2]] = args[0] * args[1]
         elif opcode == INPUT:
-            prog[addrs[0]] = yield
+            inp = yield
+            if inp is None:
+                raise Exception("no input given to input instruction")
+            prog[addrs[0]] = inp
         elif opcode == OUTPUT:
-            yield args[0]
+            inp = yield args[0]
+            if inp is not None:
+                raise Exception(f"input {inp} given to output instruction")
         elif opcode == JUMP_IF_TRUE:
             if args[0] != 0:
                 ip = args[1]
