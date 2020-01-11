@@ -35,8 +35,9 @@ def valid(elevator, objects):
 
 
 def valid_up_moves(elevator, objects):
-    objects_avail = [i for i in range(len(objects)) if objects[i] == elevator]
-    for obj_indices in itertools.chain(itertools.combinations(objects_avail, 1), itertools.combinations(objects_avail, 2)):
+    obj_avail = [i for i in range(len(objects)) if objects[i] == elevator]
+    for obj_indices in itertools.chain(itertools.combinations(obj_avail, 1),
+                                       itertools.combinations(obj_avail, 2)):
         objects_next = list(objects)
         for i in obj_indices:
             objects_next[i] += 1

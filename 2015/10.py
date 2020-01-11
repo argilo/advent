@@ -31,6 +31,7 @@ def say(s):
         last_char = char
     return output
 
+
 with open("10-input.txt") as f:
     data = f.read().rstrip()
 
