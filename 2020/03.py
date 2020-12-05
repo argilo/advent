@@ -20,6 +20,7 @@ l = []
 for line in open("03-input.txt"):
     l.append(line.rstrip())
 
+
 def slope(right, down):
     count = 0
     for i in range(len(l) // down):
@@ -27,6 +28,7 @@ def slope(right, down):
         if row[(i * right) % len(row)] == "#":
             count += 1
     return count
+
 
 print(slope(3, 1))
 print(slope(1, 1) * slope(3, 1) * slope(5, 1) * slope(7, 1) * slope(1, 2))

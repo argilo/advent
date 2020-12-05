@@ -17,7 +17,7 @@
 
 import re
 
-valid = set(["byr","iyr","eyr","hgt","hcl","ecl","pid"])
+valid = set(["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"])
 
 present = set()
 num_valid = 0
