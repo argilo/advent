@@ -29,3 +29,7 @@ print(ids[-1])
 for x in range(ids[0], ids[-1] + 1):
     if x not in ids:
         print(x)
+
+# Just for fun :)
+total = (ids[-1] - ids[0] + 1) * (ids[0] + ids[-1]) // 2
+print(total - sum(ids))
