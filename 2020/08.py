@@ -16,34 +16,20 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import aocd
+import console
 
 data = aocd.get_data(day=8, year=2020)
+prog = console.parse(data)
 
-lines = data.splitlines()
-
-prog = []
-for line in lines:
-    op, num = line.split()
-    num = int(num)
-    prog.append((op, num))
-
-acc = 0
-ip = 0
+c = console.Console(prog)
 visited = set()
 while True:
-    if ip in visited:
+    if c.ip in visited:
         break
-    visited.add(ip)
-    op, num = prog[ip]
-    if op == "acc":
-        acc += num
-        ip += 1
-    elif op == "jmp":
-        ip += num
-    elif op == "nop":
-        ip += 1
-print(acc)
-#aocd.submit(acc, part="a", day=8, year=2020)
+    visited.add(c.ip)
+    c.exec()
+print(c.acc)
+# aocd.submit(c.acc, part="a", day=8, year=2020)
 
 orig_prog = prog.copy()
 for i in range(len(prog)):
@@ -56,22 +42,14 @@ for i in range(len(prog)):
     elif op == "jmp":
         prog[i] = ("nop", prog[i][1])
 
-    acc = 0
-    ip = 0
+    c = console.Console(prog)
     visited = set()
     while True:
-        if ip in visited:
+        if c.ip in visited:
             break
-        if ip == len(prog):
-            print(acc)
-            #aocd.submit(acc, part="b", day=8, year=2020)
+        if c.ip == len(prog):
+            print(c.acc)
+            # aocd.submit(c.acc, part="b", day=8, year=2020)
             break
-        visited.add(ip)
-        op, num = prog[ip]
-        if op == "acc":
-            acc += num
-            ip += 1
-        elif op == "jmp":
-            ip += num
-        elif op == "nop":
-            ip += 1
+        visited.add(c.ip)
+        c.exec()
