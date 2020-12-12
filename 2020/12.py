@@ -24,7 +24,6 @@ dir = 90
 for line in data.splitlines():
     cmd = line[0]
     num = int(line[1:])
-    print(cmd, num)
     if cmd == "N":
         y -= num
     if cmd == "S":
@@ -46,7 +45,6 @@ for line in data.splitlines():
             x -= num
         if dir == 90:
             x += num
-    print("",  x, y, dir)
 ans = abs(x) + abs(y)
 print(ans)
 
@@ -55,7 +53,6 @@ wx, wy = 10, -1
 for line in data.splitlines():
     cmd = line[0]
     num = int(line[1:])
-    print(cmd, num)
     if cmd == "N":
         wy -= num
     if cmd == "S":
@@ -95,6 +92,5 @@ for line in data.splitlines():
         wx += diffx * num
         y += diffy * num
         wy += diffy * num
-    print("",  x, y, wx, wy)
 ans = abs(x) + abs(y)
 print(ans)
