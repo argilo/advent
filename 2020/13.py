@@ -56,8 +56,6 @@ for bus in buses:
 times.sort()
 print(times[0][0] * times[0][1])
 
-data = aocd.get_data(day=13, year=2020)
-
 a = 0
 m = 1
 for i, bus in enumerate(data.splitlines()[1].split(",")):
