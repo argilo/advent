@@ -15,14 +15,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import aocd
 import re
 
 valid = set(["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"])
 
 present = set()
 num_valid = 0
-for line in open("04-input.txt"):
-    line = line.rstrip()
+for line in aocd.get_data(day=4, year=2020).splitlines():
     if line == "":
         if valid.issubset(present):
             num_valid += 1
@@ -38,8 +38,7 @@ print(num_valid)
 
 present = set()
 num_valid = 0
-for line in open("04-input.txt"):
-    line = line.rstrip()
+for line in aocd.get_data(day=4, year=2020).splitlines():
     if line == "":
         if valid.issubset(present):
             num_valid += 1

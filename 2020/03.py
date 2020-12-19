@@ -15,10 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-l = []
+import aocd
 
-for line in open("03-input.txt"):
-    l.append(line.rstrip())
+l = aocd.get_data(day=3, year=2020).splitlines()
 
 
 def slope(right, down):

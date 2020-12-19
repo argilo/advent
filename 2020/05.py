@@ -15,9 +15,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import aocd
+
 ids = []
-for line in open("05-input.txt"):
-    line = line.rstrip()
+for line in aocd.get_data(day=5, year=2020).splitlines():
     row = int(line[:7].replace("F", "0").replace("B", "1"), 2)
     col = int(line[7:].replace("L", "0").replace("R", "1"), 2)
     id = row*8 + col

@@ -15,9 +15,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import aocd
+
 total = 0
-for line in open("02-input.txt"):
-    line = line.rstrip().split()
+for line in aocd.get_data(day=2, year=2020).splitlines():
+    line = line.split()
     low, high = [int(n) for n in line[0].split("-")]
     letter = line[1].split(":")[0]
     password = line[2]
@@ -26,8 +28,8 @@ for line in open("02-input.txt"):
 print(total)
 
 total = 0
-for line in open("02-input.txt"):
-    line = line.rstrip().split()
+for line in aocd.get_data(day=2, year=2020).splitlines():
+    line = line.split()
     first, second = [int(n) for n in line[0].split("-")]
     letter = line[1].split(":")[0]
     password = line[2]

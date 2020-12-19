@@ -15,10 +15,9 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-l = []
+import aocd
 
-for line in open("01-input.txt"):
-    l.append(int(line))
+l = [int(line) for line in aocd.get_data(day=1, year=2020).splitlines()]
 
 for i in range(len(l) - 1):
     for j in range(i+1, len(l)):
