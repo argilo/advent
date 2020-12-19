@@ -29,7 +29,6 @@ for line in lines:
     for letter in line:
         s.add(letter)
 print(total)
-aocd.submit(total, part="a", day=6, year=2020)
 
 total = 0
 s = set([chr(n) for n in range(97, 97+26)])
@@ -43,4 +42,3 @@ for line in lines:
         s2.add(letter)
     s = s.intersection(s2)
 print(total)
-aocd.submit(total, part="b", day=6, year=2020)
