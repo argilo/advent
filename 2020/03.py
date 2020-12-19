@@ -17,13 +17,13 @@
 
 import aocd
 
-l = aocd.get_data(day=3, year=2020).splitlines()
+lines = aocd.get_data(day=3, year=2020).splitlines()
 
 
 def slope(right, down):
     count = 0
-    for i in range(len(l) // down):
-        row = l[i * down]
+    for i in range(len(lines) // down):
+        row = lines[i * down]
         if row[(i * right) % len(row)] == "#":
             count += 1
     return count

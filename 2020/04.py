@@ -19,6 +19,7 @@ import aocd
 import re
 
 valid = set(["byr", "iyr", "eyr", "hgt", "hcl", "ecl", "pid"])
+colors = set(["amb", "blu", "brn", "gry", "grn", "hzl", "oth"])
 
 present = set()
 num_valid = 0
@@ -60,7 +61,7 @@ for line in aocd.get_data(day=4, year=2020).splitlines():
                 present.add(field)
         elif field == "hcl" and re.match(r"^#[0-9a-f]{6}$", value):
             present.add(field)
-        elif field == "ecl" and value in ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]:
+        elif field == "ecl" and value in colors:
             present.add(field)
         elif field == "pid" and re.match(r"^\d{9}$", value):
             present.add(field)

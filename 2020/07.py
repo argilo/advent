@@ -47,10 +47,10 @@ for outer in dict:
     try:
         cost = dijkstar.find_path(graph, outer, ("shiny", "gold")).total_cost
         ans += 1
-    except:
+    except dijkstar.algorithm.NoPathError:
         pass
 print(ans-1)
-#aocd.submit(ans-1, part="a", day=7, year=2020)
+
 
 def weight(outer):
     w = 1
@@ -59,6 +59,6 @@ def weight(outer):
         w += num * weight(inner)
     return w
 
+
 ans = weight(("shiny", "gold"))
 print(ans-1)
-#aocd.submit(ans-1, part="b", day=7, year=2020)
