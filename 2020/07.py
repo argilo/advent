@@ -40,13 +40,12 @@ graph = dijkstar.Graph()
 
 for outer, inners in dict.items():
     for num, inner in inners:
-        print(outer, num, inner)
         graph.add_edge(outer, inner, num)
 
 ans = 0
 for outer in dict:
     try:
-        cost = dijkstar.find_path(graph, outer, ('shiny', 'gold')).total_cost
+        cost = dijkstar.find_path(graph, outer, ("shiny", "gold")).total_cost
         ans += 1
     except:
         pass
@@ -54,12 +53,10 @@ print(ans-1)
 #aocd.submit(ans-1, part="a", day=7, year=2020)
 
 def weight(outer):
-    print()
     w = 1
     inners = dict[outer]
     for num, inner in inners:
         w += num * weight(inner)
-        print(num, inner)
     return w
 
 ans = weight(("shiny", "gold"))

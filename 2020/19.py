@@ -24,7 +24,7 @@ grammar, strings = data.split("\n\n")
 grammar = re.sub(r"\b(\d+)\b", r"n\1", grammar)
 grammar = grammar.replace("n0", "start")
 
-p = lark.Lark(grammar, parser='earley')
+p = lark.Lark(grammar, parser="earley")
 
 total = 0
 for line in strings.splitlines():
@@ -43,7 +43,7 @@ grammar = grammar.replace("11: 42 31", "11: 42 31 | 42 11 31")
 grammar = re.sub(r"\b(\d+)\b", r"n\1", grammar)
 grammar = grammar.replace("n0", "start")
 
-p = lark.Lark(grammar, parser='earley')
+p = lark.Lark(grammar, parser="earley")
 
 total = 0
 for line in strings.splitlines():

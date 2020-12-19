@@ -19,7 +19,7 @@ total = 0
 for line in open("02-input.txt"):
     line = line.rstrip().split()
     low, high = [int(n) for n in line[0].split("-")]
-    letter = line[1].split(':')[0]
+    letter = line[1].split(":")[0]
     password = line[2]
     if low <= password.count(letter) <= high:
         total += 1
@@ -29,7 +29,7 @@ total = 0
 for line in open("02-input.txt"):
     line = line.rstrip().split()
     first, second = [int(n) for n in line[0].split("-")]
-    letter = line[1].split(':')[0]
+    letter = line[1].split(":")[0]
     password = line[2]
     if (password[first-1] == letter) ^ (password[second-1] == letter):
         total += 1
