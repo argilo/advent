@@ -42,7 +42,6 @@ data = aocd.get_data(day=24, year=2020)
 black = set()
 for line in data.splitlines():
     x, y = 0, 0
-    print(line)
 
     dir = ""
     for c in line:
@@ -96,7 +95,6 @@ for _ in range(100):
             for a in adj:
                 if a in black:
                     num_adj += 1
-
             if (x, y) in black:
                 if num_adj == 0 or num_adj > 2:
                     pass
@@ -107,6 +105,5 @@ for _ in range(100):
                     new_black.add((x, y))
                 else:
                     pass
-
     black = new_black
-    print(len(black))
+print(len(black))
