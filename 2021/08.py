@@ -30,20 +30,6 @@ data = aocd.get_data(day=8, year=2021)
 # egadfb cdbfeg cegd fecab cgb gbdefca cg fgcdab egfdb bfceg | gbdfcae bgc cg cgb
 # gcafb gcf dcaebfg ecagb gf abcdeg gaef cafbge fdbac fegbdc | fgae cfgab fg bagce"""
 
-
-digits = {
-    0: "abcefg",
-    1: "cf",
-    2: "acdeg",
-    3: "acdfg",
-    4: "bcdf",
-    5: "abdfg",
-    6: "abdefg",
-    7: "acf",
-    8: "abcdefg",
-    9: "abcdfg",
-}
-
 digits = {
     "abcefg": 0,
     "cf": 1,
