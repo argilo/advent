@@ -122,33 +122,16 @@ for line in data.splitlines():
     else:
         conns[c2] = [c1]
 
-def visit(start, visited, path):
+def visit(start, visited):
     global tot
     if start == "end":
-        final_path = path + ["end"]
+        tot += 1
 
-        count_lower = {}
-        for v in final_path:
-            if v in count_lower:
-                count_lower[v] += 1
-            else:
-                count_lower[v] = 1
-        num_mult = 0
-        for k in count_lower:
-            v = count_lower[k]
-            if k.lower() == k and v > 1:
-                num_mult += 1
-
-        if num_mult <= 1:
-            tot += 1
-
-
-        #print(",".join(path + ["end"]))
     for c in conns[start]:
         if can_visit(c, visited):
-            visit(c, visited + [start], path + [start])
+            visit(c, visited + [c])
 
-visit("start", [], [])
+visit("start", ["start"])
 print(tot)
 
 # aocd.submit(ans, part="b", day=12, year=2021)
