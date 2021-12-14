@@ -68,6 +68,8 @@ for n in range(40):
         pair2 = k[1]
         letter_quantities[pair1] = letter_quantities.get(pair1, 0) + v
         letter_quantities[pair2] = letter_quantities.get(pair2, 0) + v
+    letter_quantities[template[0]] += 1
+    letter_quantities[template[-1]] += 1
 
     max_count = 0
     min_count = 1000000000000000
@@ -76,4 +78,4 @@ for n in range(40):
             max_count = v
         if v < min_count:
             min_count = v
-    print(n+1, (max_count+1) // 2 - (min_count+1) // 2)
+    print(n+1, max_count // 2 - min_count // 2)
