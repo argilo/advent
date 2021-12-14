@@ -16,7 +16,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import aocd
-import collections
 
 data = aocd.get_data(day=14, year=2021)
 # data = """NNCB
