@@ -77,7 +77,3 @@ for n in range(40):
         if v < min_count:
             min_count = v
     print(n+1, (max_count+1) // 2 - (min_count+1) // 2)
-
-
-
-# aocd.submit(ans, part="b", day=14, year=2021)
