@@ -39,7 +39,6 @@ data = aocd.get_data(day=14, year=2021)
 # CN -> C"""
 
 lines = data.splitlines()
-
 template = lines[0]
 
 rules = {}
@@ -71,11 +70,6 @@ for n in range(40):
     letter_quantities[template[0]] += 1
     letter_quantities[template[-1]] += 1
 
-    max_count = 0
-    min_count = 1000000000000000
-    for k, v in letter_quantities.items():
-        if v > max_count:
-            max_count = v
-        if v < min_count:
-            min_count = v
-    print(n+1, max_count // 2 - min_count // 2)
+    max_count = max(letter_quantities.values()) // 2
+    min_count = min(letter_quantities.values()) // 2
+    print(n+1, max_count - min_count)
