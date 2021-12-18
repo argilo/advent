@@ -20,16 +20,16 @@ import aocd
 data = aocd.get_data(day=18, year=2021)
 
 
-def bits(num):
+def paths(num):
     if isinstance(num, int):
-        return [""]
+        return [[]]
 
     arr = []
     left, right = num
-    for b in bits(left):
-        arr.append("0" + b)
-    for b in bits(right):
-        arr.append("1" + b)
+    for path in paths(left):
+        arr.append([0] + path)
+    for path in paths(right):
+        arr.append([1] + path)
     return arr
 
 
@@ -42,48 +42,48 @@ def mag(num):
 
 
 def explode(num):
-    bts = bits(num)
-    for x in range(len(bts)-1):
-        if len(bts[x]) == len(bts[x+1]) == 5 and bts[x][0:4] == bts[x+1][0:4]:
+    p = paths(num)
+    for x in range(len(p)-1):
+        if len(p[x]) == len(p[x+1]) == 5 and p[x][0:4] == p[x+1][0:4]:
 
             prev_pointer = None
             pointer = num
-            for dir in bts[x][0:4]:
+            for dir in p[x][0:4]:
                 prev_pointer = pointer
-                pointer = pointer[int(dir)]
+                pointer = pointer[dir]
             left, right = pointer
 
-            prev_pointer[int(dir)] = 0
+            prev_pointer[dir] = 0
 
             if x > 0:
                 prev_pointer = None
                 pointer = num
-                for dir in bts[x-1]:
+                for dir in p[x-1]:
                     prev_pointer = pointer
-                    pointer = pointer[int(dir)]
-                prev_pointer[int(dir)] += left
+                    pointer = pointer[dir]
+                prev_pointer[dir] += left
 
-            if x+2 < len(bts):
+            if x+2 < len(p):
                 prev_pointer = None
                 pointer = num
-                for dir in bts[x+2]:
+                for dir in p[x+2]:
                     prev_pointer = pointer
-                    pointer = pointer[int(dir)]
-                prev_pointer[int(dir)] += right
+                    pointer = pointer[dir]
+                prev_pointer[dir] += right
 
             return True
     return False
 
 
 def split(num):
-    for b in bits(num):
+    for path in paths(num):
         prev_pointer = None
         pointer = num
-        for dir in b:
+        for dir in path:
             prev_pointer = pointer
-            pointer = pointer[int(dir)]
+            pointer = pointer[dir]
         if pointer >= 10:
-            prev_pointer[int(dir)] = [pointer // 2, pointer - (pointer // 2)]
+            prev_pointer[dir] = [pointer // 2, pointer - (pointer // 2)]
             return True
     return False
 
