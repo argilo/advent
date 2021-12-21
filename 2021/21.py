@@ -60,8 +60,8 @@ for d1 in (1, 2, 3):
             die_roll_2[d1+d2+d3] += 1
 
 dic = {}
-def play(paths, player, p_loc, p_score):
-    tp = (paths, player, tuple(p_loc), tuple(p_score))
+def play(player, p_loc, p_score):
+    tp = (player, tuple(p_loc), tuple(p_score))
     if tp in dic:
         return dic[tp]
     wins = [0, 0]
@@ -77,13 +77,13 @@ def play(paths, player, p_loc, p_score):
         new_p_score[player] += new_p_loc[player]
 
         if new_p_score[player] >= 21:
-            wins[player] += paths * d_paths
+            wins[player] += d_paths
         else:
             new_player = (player + 1) % 2
-            new_wins = play(paths * d_paths, new_player, new_p_loc, new_p_score)
+            new_wins = play(new_player, new_p_loc, new_p_score)
 
-            wins[0] += new_wins[0]
-            wins[1] += new_wins[1]
+            wins[0] += d_paths * new_wins[0]
+            wins[1] += d_paths * new_wins[1]
 
     dic[tp] = wins
     return wins
@@ -92,7 +92,7 @@ p_loc = [None, None]
 p_loc[0] = int(lines[0].split()[4])
 p_loc[1] = int(lines[1].split()[4])
 
-wins = play(1, 0, p_loc, [0, 0])
+wins = play(0, p_loc, [0, 0])
 ans = max(wins)
 print(ans)
 
