@@ -17,8 +17,6 @@
 
 import aocd
 import copy
-import sys
-import random
 
 data = aocd.get_data(day=23, year=2021)
 # data = """#############
