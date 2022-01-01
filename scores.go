@@ -122,7 +122,11 @@ func main() {
 			log.Fatal(err)
 		}
 	} else {
-		year = time.Now().Year()
+		now := time.Now()
+		year = now.Year()
+		if now.Month() <= 10 {
+			year -= 1
+		}
 	}
 	leaderboard := fetchJSON(year)
 	members := make([]memberData, 0, len(leaderboard.Members))
