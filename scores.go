@@ -32,13 +32,13 @@ import (
 )
 
 type privateLeaderboard struct {
-	OwnerID string                `json:"owner_id"`
+	OwnerID int                   `json:"owner_id"`
 	Event   string                `json:"event"`
 	Members map[string]memberData `json:"members"`
 }
 
 type memberData struct {
-	ID          string                               `json:"id"`
+	ID          int                                  `json:"id"`
 	Name        string                               `json:"name"`
 	Stars       int                                  `json:"stars"`
 	GlobalScore int                                  `json:"global_score"`
@@ -91,9 +91,9 @@ func fetchJSON(year int) privateLeaderboard {
 	return leaderboard
 }
 
-func sortKV(scores map[string]int) []string {
+func sortKV(scores map[int]int) []int {
 	type kv struct {
-		key   string
+		key   int
 		value int
 	}
 
@@ -106,7 +106,7 @@ func sortKV(scores map[string]int) []string {
 		return s[a].value > s[b].value
 	})
 
-	var result []string
+	var result []int
 	for _, kv := range s {
 		result = append(result, kv.key)
 	}
@@ -130,8 +130,8 @@ func main() {
 	}
 	leaderboard := fetchJSON(year)
 	members := make([]memberData, 0, len(leaderboard.Members))
-	memberScores := make(map[string]int)
-	memberPotentialScores := make(map[string]int)
+	memberScores := make(map[int]int)
+	memberPotentialScores := make(map[int]int)
 	for _, member := range leaderboard.Members {
 		members = append(members, member)
 		memberScores[member.ID] = 0
@@ -182,13 +182,13 @@ func main() {
 
 	myScore := 0
 	for _, id := range sortKV(memberPotentialScores) {
-		if leaderboard.Members[id].Name == "Clayton Smith" {
+		if leaderboard.Members[strconv.Itoa(id)].Name == "Clayton Smith" {
 			myScore = memberPotentialScores[id]
 		}
 	}
 	for _, id := range sortKV(memberPotentialScores) {
 		if memberPotentialScores[id]-myScore > -1338 {
-			fmt.Println(memberPotentialScores[id]-myScore, leaderboard.Members[id].Name)
+			fmt.Println(memberPotentialScores[id]-myScore, leaderboard.Members[strconv.Itoa(id)].Name)
 		}
 	}
 }
