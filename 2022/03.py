@@ -18,13 +18,6 @@
 import aocd
 
 data = aocd.get_data(day=3, year=2022)
-# data = """vJrwpWtwJgWrhcsFMMfFFhFp
-# jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL
-# PmmdzqPrVvPwwTWBwg
-# wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn
-# ttgJtRGJQctTZtZT
-# CrZsJsPPZsGzwwsLwLmpwMDw"""
-print(data)
 
 ans = 0
 for line in data.split("\n"):

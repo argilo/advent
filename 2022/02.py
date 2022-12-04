@@ -18,7 +18,6 @@
 import aocd
 
 data = aocd.get_data(day=2, year=2022)
-print(data)
 
 games = []
 for row in data.split("\n"):
