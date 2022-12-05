@@ -187,7 +187,7 @@ func main() {
 		}
 	}
 	for _, id := range sortKV(memberPotentialScores) {
-		if memberPotentialScores[id]-myScore > -200 {
+		if memberPotentialScores[id]-myScore > -500 {
 			fmt.Println(memberPotentialScores[id]-myScore, leaderboard.Members[strconv.Itoa(id)].Name)
 		}
 	}
