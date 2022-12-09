@@ -146,14 +146,14 @@ func main() {
 			solvers := make([]memberData, 0)
 			for _, member := range members {
 				partData := member.Days[dayString][partString]
-				if _, ok := partData["get_star_ts"]; ok {
+				if _, ok := partData["star_index"]; ok {
 					solvers = append(solvers, member)
 				}
 			}
 
 			sort.Slice(solvers, func(a, b int) bool {
-				aTS, _ := solvers[a].Days[dayString][partString]["get_star_ts"]
-				bTS, _ := solvers[b].Days[dayString][partString]["get_star_ts"]
+				aTS, _ := solvers[a].Days[dayString][partString]["star_index"]
+				bTS, _ := solvers[b].Days[dayString][partString]["star_index"]
 				if aTS == bTS {
 					return solvers[a].ID > solvers[b].ID
 				}
