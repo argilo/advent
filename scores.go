@@ -62,7 +62,7 @@ func sessionCookie() string {
 
 func fetchJSON(year int) privateLeaderboard {
 	yearStr := strconv.Itoa(year)
-	url := "https://adventofcode.com/" + yearStr + "/leaderboard/private/view/179752.json"
+	url := "https://adventofcode.com/" + yearStr + "/leaderboard/private/view/51230.json"
 
 	client := http.Client{}
 
