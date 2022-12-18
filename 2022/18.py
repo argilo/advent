@@ -19,19 +19,6 @@ import aocd
 import dijkstar
 
 data = aocd.get_data(day=18, year=2022)
-# data = """2,2,2
-# 1,2,2
-# 3,2,2
-# 2,1,2
-# 2,3,2
-# 2,2,1
-# 2,2,3
-# 2,2,4
-# 2,2,6
-# 1,2,5
-# 3,2,5
-# 2,1,5
-# 2,3,5"""
 
 cubes = set()
 for line in data.split("\n"):
