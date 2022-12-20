@@ -30,14 +30,53 @@ class Node:
         return repr(self.n)
 
 
-# els = [Node(int(n)) for n in data.split("\n")]
+els = [Node(int(n)) for n in data.split("\n")]
+
+for i in range(len(els)):
+    els[i].next = els[(i+1) % len(els)]
+    els[i].prev = els[(i+len(els)-1) % len(els)]
+
+for el in els:
+    num = el.n % (len(els) - 1)
+    if num == 0:
+        continue
+
+    el.next.prev, el.prev.next = el.prev, el.next
+    if num > 0:
+        target = el.next
+        for _ in range(num - 1):
+            target = target.next
+
+    target_next = target.next
+    el.prev, el.next, target.next, target_next.prev = target, target_next, el, el
+
+
+el = els[0]
+while True:
+    if el.n == 0:
+        break
+    el = el.next
+
+ans = 0
+for _ in range(1000):
+    el = el.next
+ans += el.n
+for _ in range(1000):
+    el = el.next
+ans += el.n
+for _ in range(1000):
+    el = el.next
+ans += el.n
+
+print(ans)
+
+
 els = [Node(int(n) * 811589153) for n in data.split("\n")]
 
 for i in range(len(els)):
     els[i].next = els[(i+1) % len(els)]
     els[i].prev = els[(i+len(els)-1) % len(els)]
 
-# for _ in range(1):
 for _ in range(10):
     for el in els:
         num = el.n % (len(els) - 1)
