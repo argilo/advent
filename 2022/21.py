@@ -80,5 +80,3 @@ def expression(monkey):
 
 
 os.system(f"sage -c 'print(solve({expression(left)} == {expression(right)}, x)[0].rhs())'")
-
-# aocd.submit(ans, part="b", day=21, year=2022)
