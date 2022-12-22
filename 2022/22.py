@@ -46,17 +46,14 @@ cur_c = rows[0].index(".")
 cur_dir = 0
 
 for step in path_list:
-    #print(step)
     if isinstance(step, int):
         times = int(step)
         mov_r, mov_c = dirs[cur_dir]
 
         for _ in range(times):
             next_r, next_c = (cur_r + mov_r) % height, (cur_c + mov_c) % width
-            #print(cur_r, cur_c, cur_dir, next_r, next_c)
             while rows[next_r][next_c] == " ":
                 next_r, next_c = (next_r + mov_r) % height, (next_c + mov_c) % width
-                #print(" ", next_r, next_c)
 
             if rows[next_r][next_c] == "#":
                 break
