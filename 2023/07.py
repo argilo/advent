@@ -16,7 +16,6 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import aocd
-import functools
 from collections import Counter
 import itertools
 
