@@ -16,17 +16,16 @@
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import aocd
-from collections import Counter
+import collections
 import itertools
 
-
 data = aocd.get_data(day=7, year=2023)
-# data = """32T3K 765
-# T55J5 684
-# KK677 28
-# KTJJT 220
-# QQQJA 483"""
 
+Hand = collections.namedtuple("Hand", ["cards", "bid"])
+hands = []
+for line in data.splitlines():
+    cards, bid = line.split()
+    hands.append(Hand(list(cards), int(bid)))
 
 card_rank = {
     "A": 14,
@@ -45,9 +44,8 @@ card_rank = {
 }
 
 
-def hand_type(hand):
-    counts = Counter(hand)
-    shape = sorted(counts.values())
+def hand_type(cards):
+    shape = sorted(collections.Counter(cards).values())
 
     if shape == [5]:
         return 7
@@ -61,22 +59,15 @@ def hand_type(hand):
         return 3
     if shape == [1, 1, 1, 2]:
         return 2
-    return 1
+    if shape == [1, 1, 1, 1, 1]:
+        return 1
 
 
 def sort_key(hand):
-    return [hand_type(hand[0])] + [card_rank[c] for c in hand[0]]
+    return hand_type(hand.cards), [card_rank[card] for card in hand.cards]
 
 
-hands = []
-for line in data.splitlines():
-    hand = line.split()
-    hand[1] = int(hand[1])
-    hands.append(hand)
-
-ans = 0
-for i, hand in enumerate(sorted(hands, key=sort_key), 1):
-    ans += i * hand[1]
+ans = sum(i * hand.bid for i, hand in enumerate(sorted(hands, key=sort_key), 1))
 print(ans)
 
 # aocd.submit(ans, part="a", day=7, year=2023)
@@ -85,32 +76,27 @@ print(ans)
 card_rank["J"] = 1
 
 
-def hand_type2(hand):
-    joker_offsets = []
-    for i, c in enumerate(hand):
-        if c == "J":
-            joker_offsets.append(i)
+def hand_type_jokers(cards):
+    joker_offsets = [i for i, card in enumerate(cards) if card == "J"]
 
-    if len(joker_offsets) == 0:
-        return hand_type(hand)
+    if len(joker_offsets) in (0, 5):
+        return hand_type(cards)
 
     best_type = 0
     for vals in itertools.product(card_rank.keys(), repeat=len(joker_offsets)):
-        new_hand = list(hand)
-        for i, v in zip(joker_offsets, vals):
-            new_hand[i] = v
-            typ = hand_type("".join(new_hand))
-            best_type = max(best_type, typ)
+        new_cards = cards.copy()
+        for i, val in zip(joker_offsets, vals):
+            new_cards[i] = val
+            new_type = hand_type(new_cards)
+            best_type = max(best_type, new_type)
     return best_type
 
 
-def sort_key2(hand):
-    return [hand_type2(hand[0])] + [card_rank[c] for c in hand[0]]
+def sort_key_jokers(hand):
+    return hand_type_jokers(hand.cards), [card_rank[card] for card in hand.cards]
 
 
-ans = 0
-for i, hand in enumerate(sorted(hands, key=sort_key2), 1):
-    ans += i * hand[1]
+ans = sum(i * hand.bid for i, hand in enumerate(sorted(hands, key=sort_key_jokers), 1))
 print(ans)
 
 # aocd.submit(ans, part="b", day=7, year=2023)
