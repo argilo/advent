@@ -75,34 +75,17 @@ for line in data.splitlines():
     hand[1] = int(hand[1])
     hands.append(hand)
 
-hands = sorted(hands, key=sort_key)
-
 ans = 0
-for i, hand in enumerate(hands, 1):
+for i, hand in enumerate(sorted(hands, key=sort_key), 1):
     ans += i * hand[1]
 print(ans)
 
 # aocd.submit(ans, part="a", day=7, year=2023)
 
 
-card_rank2 = {
-    "A": 14,
-    "K": 13,
-    "Q": 12,
-    "J": 1,
-    "T": 10,
-    "9": 9,
-    "8": 8,
-    "7": 7,
-    "6": 6,
-    "5": 5,
-    "4": 4,
-    "3": 3,
-    "2": 2,
-}
+card_rank["J"] = 1
 
 
-@functools.cache
 def hand_type2(hand):
     joker_offsets = []
     for i, c in enumerate(hand):
@@ -123,19 +106,11 @@ def hand_type2(hand):
 
 
 def sort_key2(hand):
-    return [hand_type2(hand[0])] + [card_rank2[c] for c in hand[0]]
+    return [hand_type2(hand[0])] + [card_rank[c] for c in hand[0]]
 
-
-hands = []
-for line in data.splitlines():
-    hand = line.split()
-    hand[1] = int(hand[1])
-    hands.append(hand)
-
-hands = sorted(hands, key=sort_key2)
 
 ans = 0
-for i, hand in enumerate(hands, 1):
+for i, hand in enumerate(sorted(hands, key=sort_key2), 1):
     ans += i * hand[1]
 print(ans)
 
