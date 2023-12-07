@@ -65,18 +65,9 @@ def hand_type(hand):
     return 1
 
 
-def compare(first, second):
-    first_type = hand_type(first[0])
-    first_ranks = [card_rank[c] for c in first[0]]
-    second_type = hand_type(second[0])
-    second_ranks = [card_rank[c] for c in second[0]]
+def sort_key(hand):
+    return [hand_type(hand[0])] + [card_rank[c] for c in hand[0]]
 
-    if ([first_type] + first_ranks) > ([second_type] + second_ranks):
-        return 1
-    elif ([first_type] + first_ranks) < ([second_type] + second_ranks):
-        return -1
-    else:
-        return 0
 
 hands = []
 for line in data.splitlines():
@@ -84,7 +75,7 @@ for line in data.splitlines():
     hand[1] = int(hand[1])
     hands.append(hand)
 
-hands = sorted(hands, key=functools.cmp_to_key(compare))
+hands = sorted(hands, key=sort_key)
 
 ans = 0
 for i, hand in enumerate(hands, 1):
@@ -131,18 +122,8 @@ def hand_type2(hand):
     return best_type
 
 
-def compare2(first, second):
-    first_type = hand_type2(first[0])
-    first_ranks = [card_rank2[c] for c in first[0]]
-    second_type = hand_type2(second[0])
-    second_ranks = [card_rank2[c] for c in second[0]]
-
-    if ([first_type] + first_ranks) > ([second_type] + second_ranks):
-        return 1
-    elif ([first_type] + first_ranks) < ([second_type] + second_ranks):
-        return -1
-    else:
-        return 0
+def sort_key2(hand):
+    return [hand_type2(hand[0])] + [card_rank2[c] for c in hand[0]]
 
 
 hands = []
@@ -151,7 +132,7 @@ for line in data.splitlines():
     hand[1] = int(hand[1])
     hands.append(hand)
 
-hands = sorted(hands, key=functools.cmp_to_key(compare2))
+hands = sorted(hands, key=sort_key2)
 
 ans = 0
 for i, hand in enumerate(hands, 1):
