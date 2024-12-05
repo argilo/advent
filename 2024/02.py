@@ -59,7 +59,7 @@ def is_safe(report):
     if safe:
         if min(diffs) > 0 or max(diffs) < 0:
             return True
-    
+
     return False
 
 

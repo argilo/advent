@@ -47,7 +47,7 @@ for r in range(height):
                         word = board[r][c] + board[r+dr][c+dc] + board[r+dr*2][c+dc*2] + board[r+dr*3][c+dc*3]
                         if word == "XMAS":
                             ans += 1
-print(ans)                
+print(ans)
 # aocd.submit(ans, part="a", day=4, year=2024)
 
 
