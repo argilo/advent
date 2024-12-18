@@ -66,9 +66,7 @@ graph = nx.grid_2d_graph(size, size)
 
 for line in data.splitlines():
     x, y = [int(n) for n in line.split(",")]
-
-    if x < size - 1:
-        graph.remove_node((x, y))
+    graph.remove_node((x, y))
 
     if not nx.has_path(graph, source=(0, 0), target=(size-1, size-1)):
         ans = f"{x},{y}"
