@@ -50,20 +50,11 @@ num_corrupted = 1024
 # size = 7
 # num_corrupted = 12
 
-graph = nx.Graph()
-corrupted = set()
+graph = nx.grid_2d_graph(size, size)
+
 for line in data.splitlines()[:num_corrupted]:
     x, y = [int(n) for n in line.split(",")]
-    corrupted.add((x, y))
-
-for x in range(size):
-    for y in range(size):
-        if x < size - 1:
-            if (x, y) not in corrupted and (x+1, y) not in corrupted:
-                graph.add_edge((x, y), (x+1, y))
-        if y < size - 1:
-            if (x, y) not in corrupted and (x, y+1) not in corrupted:
-                graph.add_edge((x, y), (x, y+1))
+    graph.remove_node((x, y))
 
 ans = len(nx.shortest_path(graph, source=(0, 0), target=(size-1, size-1))) - 1
 
@@ -71,23 +62,16 @@ print(ans)
 # aocd.submit(ans, part="a", day=18, year=2024)
 
 
-corrupted = set()
-for line in data.splitlines():
-    xx, yy = [int(n) for n in line.split(",")]
-    corrupted.add((xx, yy))
+graph = nx.grid_2d_graph(size, size)
 
-    graph = nx.Graph()
-    for x in range(size):
-        for y in range(size):
-            if x < size - 1:
-                if (x, y) not in corrupted and (x+1, y) not in corrupted:
-                    graph.add_edge((x, y), (x+1, y))
-            if y < size - 1:
-                if (x, y) not in corrupted and (x, y+1) not in corrupted:
-                    graph.add_edge((x, y), (x, y+1))
+for line in data.splitlines():
+    x, y = [int(n) for n in line.split(",")]
+
+    if x < size - 1:
+        graph.remove_node((x, y))
 
     if not nx.has_path(graph, source=(0, 0), target=(size-1, size-1)):
-        ans = f"{xx},{yy}"
+        ans = f"{x},{y}"
         break
 
 print(ans)
