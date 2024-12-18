@@ -56,7 +56,7 @@ for line in data.splitlines()[:num_corrupted]:
     x, y = [int(n) for n in line.split(",")]
     graph.remove_node((x, y))
 
-ans = len(nx.shortest_path(graph, source=(0, 0), target=(size-1, size-1))) - 1
+ans = nx.shortest_path_length(graph, source=(0, 0), target=(size-1, size-1))
 
 print(ans)
 # aocd.submit(ans, part="a", day=18, year=2024)
