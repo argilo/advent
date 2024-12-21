@@ -37,7 +37,7 @@ data = aocd.get_data(day=20, year=2024)
 # #...#...#...###
 # ###############"""
 
-board = [list(row) for row in data.splitlines()]
+board = data.splitlines()
 height = len(board)
 width = len(board[0])
 
@@ -50,9 +50,6 @@ for r, row in enumerate(board):
             start_r, start_c = r, c
         elif col == "E":
             end_r, end_c = r, c
-
-board[start_r][start_c] = "."
-board[end_r][end_c] = "."
 
 full_path = nx.shortest_path(graph, source=(start_r, start_c), target=(end_r, end_c))
 index = {node: i for i, node in enumerate(full_path)}
