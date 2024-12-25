@@ -247,4 +247,4 @@ for r, row in enumerate(board):
             ans += 100 * r + c
 
 print(ans)
-aocd.submit(ans, part="b", day=15, year=2024)
+# aocd.submit(ans, part="b", day=15, year=2024)
