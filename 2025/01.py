@@ -17,7 +17,10 @@
 
 import aocd
 
-data = aocd.get_data(day=1, year=2025)
+YEAR = 2025
+DAY = 1
+
+data = aocd.get_data(day=DAY, year=YEAR)
 # data = """L68
 # L30
 # R48
@@ -42,7 +45,7 @@ for line in data.splitlines():
         ans += 1
 
 print(ans)
-# aocd.submit(ans, part="a", day=1, year=2025)
+# aocd.submit(ans, part="a", day=DAY, year=YEAR)
 
 
 pos = 50
@@ -59,4 +62,4 @@ for line in data.splitlines():
             ans += 1
 
 print(ans)
-# aocd.submit(ans, part="b", day=1, year=2025)
+# aocd.submit(ans, part="b", day=DAY, year=YEAR)
