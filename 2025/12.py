@@ -40,7 +40,12 @@ for line in lines[30:]:
     if occupied > area:
         continue
 
-    ans += 1
+    area_33 = (width // 3) * (length // 3)
+    if sum(nums) <= area_33:
+        ans += 1
+        continue
+
+    raise Exception("Oh no!")
 
 print(ans)
 # aocd.submit(ans, part="a", day=DAY, year=YEAR)
